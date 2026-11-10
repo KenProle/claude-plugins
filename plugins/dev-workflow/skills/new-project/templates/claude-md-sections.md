@@ -12,7 +12,7 @@
 - Merge with squash so `{{DEFAULT_BRANCH}}` keeps one commit per change. The PR title and body become the commit, so write the title like the existing history and update both when review fixes change what the PR does. Bring a branch up to date by merging `{{DEFAULT_BRANCH}}` into it, not by rebasing and force-pushing.
 - (if a ruleset is set up) `{{DEFAULT_BRANCH}}` is protected by a ruleset that requires a pull request and the CI jobs named {{REQUIRED_CHECKS}}. Renaming a job means updating the ruleset too.
 
-Security-sensitive areas to review closely:
+Security-sensitive areas to review closely (before writing or changing code in them, load `/sec-context:guide` for the relevant topic):
 {{SECURITY_SENSITIVE_AREAS}}
 <!-- e.g. code that runs subprocesses or builds shell commands; file paths built from input;
      authentication, sessions and secrets; parsing of untrusted input; network calls to
