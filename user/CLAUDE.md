@@ -31,6 +31,11 @@ Personal working rules for every project on this machine. `~/.claude/CLAUDE.md` 
 - Reviewer agents and subagents never check out or switch branches in the main checkout. They read the change with `gh pr diff <N>` or `git show <ref>:<path>`, not the local working tree.
 - Tell agents: if a command is denied, stop and report it. Never work around a denied command another way.
 
+## Security-sensitive code
+
+- Before writing or changing code that falls under `/sec-context:guide`'s description, load it for that topic first. Its description is the full list. Common cases are parsing untrusted input, running subprocesses, building file paths, handling credentials, sessions or tokens, rendering HTML, and adding endpoints, headers or dependencies. If the sec-context plugin isn't installed, say so and carry on.
+- Briefs for agents and child sessions that will write such code tell them to do the same. Read-only reviewers don't need it.
+
 ## Dependencies
 
 - Follow the project's dependency policy. Never take package names, versions or commit hashes from model memory; check the registry live.

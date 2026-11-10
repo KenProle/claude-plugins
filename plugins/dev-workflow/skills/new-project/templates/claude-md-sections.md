@@ -12,6 +12,8 @@
 - Merge with squash so `{{DEFAULT_BRANCH}}` keeps one commit per change. The PR title and body become the commit, so write the title like the existing history and update both when review fixes change what the PR does. Bring a branch up to date by merging `{{DEFAULT_BRANCH}}` into it, not by rebasing and force-pushing.
 - (if a ruleset is set up) `{{DEFAULT_BRANCH}}` is protected by a ruleset that requires a pull request and the CI jobs named {{REQUIRED_CHECKS}}. Renaming a job means updating the ruleset too.
 
+Before writing or changing any code that falls under `/sec-context:guide`'s description, load it for that topic first. This applies everywhere in the project, not only in the areas below. Its description is the full list; common cases are parsing untrusted input, subprocesses, file paths, credentials and tokens, HTML, endpoints, headers and dependencies. Without the plugin, say so and carry on.
+
 Security-sensitive areas to review closely:
 {{SECURITY_SENSITIVE_AREAS}}
 <!-- e.g. code that runs subprocesses or builds shell commands; file paths built from input;
