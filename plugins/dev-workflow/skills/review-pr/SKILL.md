@@ -30,16 +30,16 @@ Each reviewer runs in its **own new agent**, never in the session that wrote the
 The three reviewers:
 
 1. **Code review**: an agent that invokes the `code-review` skill with args `<level> <N>`.
-2. **Security review** (skip for docs-only): the `security-review` skill reviews *the current branch*, not a PR number, so this agent must run in an isolated worktree (`isolation: "worktree"`), where it may run `gh pr checkout <N>` *inside that worktree only*, confirm `git rev-parse HEAD` equals `<headRefOid>`, then invoke `security-review`. If it can't confirm the head commit, it stops and reports rather than reviewing the wrong branch.
+2. **Security review** (skip for docs-only): the `security-review` skill reviews *the current branch*, not a PR number, so this agent must run in an isolated worktree (`isolation: "worktree"`), where it may run `gh pr checkout <N> --detach` *inside that worktree only* (`--detach`, because git refuses to check out a branch that's already checked out in another worktree, such as the main checkout), confirm `git rev-parse HEAD` equals `<headRefOid>`, then invoke `security-review`. If it can't confirm the head commit, it stops and reports rather than reviewing the wrong branch.
 3. **sec-context review** (skip for docs-only): an agent that invokes the `sec-context:review` skill with args `<N>`.
 
 ## 3. Check and show the findings
 
-Before showing anything, read each finding against the code yourself: drop ones that are plainly wrong (cite why), and mark ones that describe code the PR didn't change as **pre-existing**. Then show the user one list per reviewer, ranked by severity, with your verdict on each (real / not real / pre-existing). Count them; don't estimate.
+Before showing anything, read each finding against the code yourself and give it a verdict: **real**, **plausible**, **not real** (cite why), or **pre-existing** (it describes code the PR didn't change). Never leave a finding out: a not-real one is still listed, with the reason, so the user and the PR record can check your judgment rather than only the reviewers'. Then show the user one list per reviewer, ranked by severity, with your verdict on each. Count them; don't estimate.
 
 ## 4. Record them on the PR
 
-Post one comment per reviewer with `gh pr comment <N> --body-file <file>` (write the body to a temp file, not inline), headed with the reviewer, the head commit reviewed and the date, including "No findings" when there were none. Invoking this skill is the user's request to post these comments, so they need no separate approval once the user has seen the findings.
+Post one comment per reviewer with `gh pr comment <N> --body-file <file>` (write the body to a temp file, not inline), headed with the reviewer, the head commit reviewed and the date, listing every finding with its verdict (including the not-real ones and why), or "No findings" when there were none. Invoking this skill is the user's request to post these comments, so they need no separate approval once the user has seen the findings.
 
 Exception: if the repository is **public** (`gh repo view --json visibility`) and a finding is an exploitable security issue that isn't fixed yet, don't publish its details. Post that a security finding is being fixed in this PR, fix it, and give the details once the fix is pushed, or ask the user.
 

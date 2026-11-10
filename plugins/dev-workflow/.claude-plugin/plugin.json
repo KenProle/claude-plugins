@@ -1,6 +1,6 @@
 {
   "name": "dev-workflow",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Review a pull request with /code-review, /security-review and /sec-context:review in fresh agents and record the findings on the PR, and set up a new project with the same PR workflow, dependency policy, OpenSpec and plugins.",
   "author": {
     "name": "Ken Prole",
