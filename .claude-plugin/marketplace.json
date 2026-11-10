@@ -1,0 +1,35 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "kenprole-plugins",
+  "description": "Ken Prole's Claude Code plugins: development workflow, security review and dependency reduction.",
+  "owner": {
+    "name": "Ken Prole",
+    "url": "https://github.com/KenProle"
+  },
+  "plugins": [
+    {
+      "name": "dev-workflow",
+      "description": "Pull request reviews and new-project setup: the branch, PR, review and dependency-policy practices, packaged for reuse.",
+      "source": "./plugins/dev-workflow",
+      "category": "development"
+    },
+    {
+      "name": "sec-context",
+      "description": "Security review and secure-coding guidance against the sec-context anti-pattern guides.",
+      "source": {
+        "source": "github",
+        "repo": "KenProle/sec-context"
+      },
+      "category": "security"
+    },
+    {
+      "name": "trim-reaper",
+      "description": "Dependency-reduction passes (assess, 1-8, policy) that preserve behavior, security and compatibility.",
+      "source": {
+        "source": "github",
+        "repo": "KenProle/trim-reaper"
+      },
+      "category": "development"
+    }
+  ]
+}

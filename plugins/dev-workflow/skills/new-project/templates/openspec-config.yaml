@@ -1,0 +1,39 @@
+schema: spec-driven
+
+# Constraints that apply to every change. Codebase facts an agent can read
+# for itself live in CLAUDE.md; this is only what the code can't tell you.
+context: |
+  Project: {{PROJECT_NAME}}, {{ONE_LINE_DESCRIPTION}}.
+  {{PROJECT_CONSTRAINTS}}
+  - Dependencies: no new third-party dependency without a justification in design.md, and
+    every addition or upgrade follows the "Third-party dependencies" policy in CLAUDE.md.
+  - Development happens on Windows; commands and paths in tasks must work there.
+
+rules:
+  proposal:
+    - State what is out of scope.
+    - Record each decision made with the user, and the rejected alternatives.
+  specs:
+    - Every requirement uses SHALL and has at least one testable scenario.
+    - Ground examples in real data rather than invented values.
+    # Quoted because these rules contain ": ", which YAML would otherwise read as a key.
+    - >-
+      Start every requirement and scenario header with a stable ID, using a short prefix per
+      capability: "### Requirement: AB-3 Name" and "#### Scenario: AB-3.1 Name". Find the next
+      free number in both openspec/specs/ and openspec/changes/. Never renumber or reuse an ID;
+      a removed requirement's ID is retired.
+    - "A MODIFIED or RENAMED requirement keeps its ID; only the text after the ID may change."
+  design:
+    - Justify any new dependency, or state that none are added.
+  tasks:
+    - Each task names, by ID, the requirements it implements and the test that proves it.
+    - End with a verification task that exercises the feature in the running app.
+
+operations:
+  apply:
+    guidance:
+      - Start each test name with the scenario ID it covers, so searching for an ID finds its tests.
+      - Run the focused tests first, then the full suites before marking tasks done.
+  archive:
+    guidance:
+      - Before archiving, confirm CI passed on the commit that implements the change.

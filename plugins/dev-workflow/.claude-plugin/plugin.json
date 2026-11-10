@@ -1,0 +1,13 @@
+{
+  "name": "dev-workflow",
+  "version": "0.1.0",
+  "description": "Review a pull request with /code-review, /security-review and /sec-context:review in fresh agents and record the findings on the PR, and set up a new project with the same PR workflow, dependency policy, OpenSpec and plugins.",
+  "author": {
+    "name": "Ken Prole",
+    "url": "https://github.com/KenProle"
+  },
+  "homepage": "https://github.com/KenProle/claude-plugins",
+  "repository": "https://github.com/KenProle/claude-plugins",
+  "license": "MIT",
+  "keywords": ["workflow", "pull-requests", "code-review", "security-review", "openspec", "dependencies"]
+}
