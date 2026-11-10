@@ -29,7 +29,10 @@ Or install for yourself everywhere:
 ```bash
 claude plugin marketplace add KenProle/claude-plugins
 claude plugin install dev-workflow@kenprole-plugins
+claude plugin install sec-context@kenprole-plugins
 ```
+
+`user/CLAUDE.md` expects `sec-context` (its review and guide skills), so install both.
 
 ## Personal rules
 
